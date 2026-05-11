@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json.schemastore.org/claude-code-settings.json",
+    "hooks": {
+        "SessionStart": [
+            {
+                "matcher": "",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "CLAUDE_PLUGIN_ROOT=.claude/plugins/superpowers .claude/plugins/superpowers/hooks/run-hook.cmd session-start"
+                    }
+                ]
+            }
+        ]
+    }
+}
