@@ -1,0 +1,39 @@
+name: Cafe Capital Morning Brief
+
+on:
+  schedule:
+    - cron: '0 23 * * *'  # 06:00 AM Vietnam time (UTC+7)
+  workflow_dispatch:
+
+jobs:
+  morning-brief:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run morning brief
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS }}
+        run: python -m scripts.main
+
+      - name: Upload brief as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: morning-brief-${{ github.run_id }}
+          path: output/*.html
+          retention-days: 7
