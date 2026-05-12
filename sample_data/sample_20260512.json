@@ -1,0 +1,130 @@
+{
+  "date": "2026-05-12",
+  "market_summary": "Thi truong chung khoan Viet Nam phuc hoi nhe sau phien giam manh hom qua. VN-Index tang 8.32 diem (+0.65%), dat muc 1287.45 diem. Dong von nuoc ngoai quay tro lai voi gia tri mua rong 142 ty dong. Nganh ngan hang va bat dong san dan dat thi truong.",
+  "analyst_note": "Rui ro ngan han tu bien dong ty gia USD/VND can duoc theo doi chat. Co hoi tich luy co phieu ngan hang trong vung gia hien tai truoc mua ket qua kinh doanh quy 2.",
+  "disclaimer": "Tai lieu nay chi mang tinh chat tham khao, khong phai khuyen nghi dau tu. Cafe Capital khong chiu trach nhiem ve bat ky quyet dinh dau tu nao dua tren tai lieu nay.",
+  "vnindex": {
+    "current": 1287.45,
+    "change": 8.32,
+    "change_pct": 0.65,
+    "volume_bn_vnd": 18.4,
+    "gainers": [
+      {"ticker": "VNM", "price": "80,500", "change_pct": 4.8},
+      {"ticker": "MWG", "price": "62,100", "change_pct": 3.2},
+      {"ticker": "FPT", "price": "138,500", "change_pct": 2.7}
+    ],
+    "losers": [
+      {"ticker": "HPG", "price": "26,300", "change_pct": -2.1},
+      {"ticker": "NVL", "price": "13,800", "change_pct": -1.8},
+      {"ticker": "PDR", "price": "18,200", "change_pct": -1.5}
+    ]
+  },
+  "global_indices": [
+    {"name": "S&P 500", "value": 5287.76, "change_pct": 0.48},
+    {"name": "Nasdaq", "value": 18432.14, "change_pct": 0.71},
+    {"name": "Dow Jones", "value": 39852.34, "change_pct": 0.22},
+    {"name": "Nikkei 225", "value": 38124.56, "change_pct": -0.34},
+    {"name": "Hang Seng", "value": 19234.78, "change_pct": 1.12},
+    {"name": "Shanghai", "value": 3087.45, "change_pct": 0.56}
+  ],
+  "top_movers": [
+    {"ticker": "VNM", "sector": "Hang tieu dung", "change_pct": 4.8, "catalyst": "KQKD Q1 vuot ky vong 15%"},
+    {"ticker": "MWG", "sector": "Ban le", "change_pct": 3.2, "catalyst": "Mo rong 12 cua hang moi trong thang 4"},
+    {"ticker": "FPT", "sector": "Cong nghe", "change_pct": 2.7, "catalyst": "Hop dong AI moi tri gia 200 ty dong"},
+    {"ticker": "HPG", "sector": "Vat lieu", "change_pct": -2.1, "catalyst": "Gia thep the gioi giam 3.2% trong tuan"},
+    {"ticker": "NVL", "sector": "Bat dong san", "change_pct": -1.8, "catalyst": "Ap luc ban ra tu quy ngoai"}
+  ],
+  "sector_performance": [
+    {"sector": "Ngan hang", "change_pct": 1.2},
+    {"sector": "Bat dong san", "change_pct": -0.8},
+    {"sector": "Hang tieu dung", "change_pct": 2.1},
+    {"sector": "Cong nghe", "change_pct": 1.8},
+    {"sector": "Vat lieu", "change_pct": -1.3},
+    {"sector": "Y te", "change_pct": 0.4},
+    {"sector": "Nang luong", "change_pct": 0.9},
+    {"sector": "Cong nghiep", "change_pct": 0.3}
+  ],
+  "macro_themes": [
+    {
+      "title": "Fed giu lai suat, tin hieu cat giam trong thang 9",
+      "detail": "FOMC giu lai suat o muc 5.25-5.50%. Chu tich Powell nhan manh can them du lieu truoc khi cat giam. Thi truong dinh gia 68% kha nang cat giam trong thang 9/2026."
+    },
+    {
+      "title": "GDP Trung Quoc Q1 tang 5.3%, cao hon du bao",
+      "detail": "Tiep tuc ho tro tam ly cho cac thi truong Chau A. Xuat khau Viet Nam sang Trung Quoc du kien tang 8% trong Q2."
+    },
+    {
+      "title": "USD/VND on dinh quanh 25,400, NHNN can thiep",
+      "detail": "Ngan hang Nha nuoc ban USD de on dinh ty gia. Ap luc lam phat nhap khau can duoc theo doi trong Q2."
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "Co so",
+      "probability_pct": 55,
+      "vnindex_target": 1320,
+      "description": "VN-Index test lai vung khang cu 1300-1310 trong tuan toi. Dong von ngoai tiep tuc vao rong ho tro da tang."
+    },
+    {
+      "name": "Tang gia (Bull)",
+      "probability_pct": 25,
+      "vnindex_target": 1360,
+      "description": "Dot pha len tren 1310 kich hoat mua duoi. Dong von ETF tang manh co the day VN-Index len 1340-1360."
+    },
+    {
+      "name": "Giam gia (Bear)",
+      "probability_pct": 20,
+      "vnindex_target": 1240,
+      "description": "Ap luc chot loi manh o vung 1290-1300. Rui ro vi mo toan cau co the day VN-Index ve 1240-1260."
+    }
+  ],
+  "actions": [
+    {
+      "action": "MUA",
+      "ticker": "VCB",
+      "price_range": "88,000 - 90,000",
+      "target": "105,000",
+      "stop_loss": "83,000",
+      "rationale": "Ngan hang lon nhat VN co nen tang manh, huong loi tu ha lai suat. P/B 2.8x hop ly so voi lich su."
+    },
+    {
+      "action": "NAM GIU",
+      "ticker": "FPT",
+      "price_range": "135,000 - 140,000",
+      "target": "165,000",
+      "stop_loss": "128,000",
+      "rationale": "Cau chuyen tang truong AI va xuat khau phan mem con nguyen ven. Tang truong EPS du kien 22% nam 2026."
+    },
+    {
+      "action": "CHOT LOI",
+      "ticker": "VNM",
+      "price_range": "80,000 - 82,000",
+      "target": null,
+      "stop_loss": null,
+      "rationale": "Da dat muc gia muc tieu 80,000. Chot 50% vi the, giu 50% con lai."
+    }
+  ],
+  "portfolio_changes": [
+    {"change": "Tang ty trong VCB tu 8% len 12%"},
+    {"change": "Giam ty trong VNM tu 10% len 5% sau khi chot loi"},
+    {"change": "Them moi FPT vao danh muc voi ty trong 7%"}
+  ],
+  "economic_calendar": [
+    {"date": "2026-05-13", "event": "CPI Viet Nam thang 4", "importance": "cao", "forecast": "+3.2% YoY"},
+    {"date": "2026-05-14", "event": "Doanh so ban le My thang 4", "importance": "cao", "forecast": "+0.4% MoM"},
+    {"date": "2026-05-15", "event": "GDP Nhat Ban Q1 so bo", "importance": "trung binh", "forecast": "+0.5% QoQ"},
+    {"date": "2026-05-16", "event": "Michigan Consumer Sentiment", "importance": "trung binh", "forecast": "78.5"}
+  ],
+  "commodities": [
+    {"name": "Dau WTI", "value": 78.42, "unit": "USD/barrel", "change_pct": -0.8},
+    {"name": "Vang", "value": 2387.50, "unit": "USD/oz", "change_pct": 0.3},
+    {"name": "Dong", "value": 4.52, "unit": "USD/lb", "change_pct": -1.2},
+    {"name": "Thep cuon cam nong", "value": 542.0, "unit": "USD/tan", "change_pct": -3.2}
+  ],
+  "fx_rates": [
+    {"pair": "USD/VND", "rate": 25412, "change_pct": 0.05},
+    {"pair": "EUR/USD", "rate": 1.0821, "change_pct": 0.12},
+    {"pair": "USD/JPY", "rate": 154.32, "change_pct": -0.21},
+    {"pair": "USD/CNY", "rate": 7.2341, "change_pct": -0.08}
+  ]
+}
