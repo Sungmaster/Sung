@@ -1,0 +1,15 @@
+{
+  "index": 1287.45,
+  "change": 8.32,
+  "change_pct": 0.65,
+  "gainers": [
+    {"ticker": "VNM", "price": "80,500", "change_pct": 4.8},
+    {"ticker": "FPT", "price": "125,000", "change_pct": 3.2},
+    {"ticker": "MWG", "price": "45,200", "change_pct": 2.9}
+  ],
+  "losers": [
+    {"ticker": "HPG", "price": "26,300", "change_pct": -2.1},
+    {"ticker": "VIC", "price": "42,100", "change_pct": -1.8},
+    {"ticker": "NVL", "price": "11,500", "change_pct": -1.5}
+  ]
+}

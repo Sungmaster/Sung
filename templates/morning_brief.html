@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ban Tin Sang - Cafe Capital - {{ date }}</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 680px; margin: 0 auto; padding: 20px; color: #222; }
+    h1 { color: #1a4a2e; border-bottom: 2px solid #1a4a2e; padding-bottom: 8px; }
+    h2 { color: #2d6a4f; margin-top: 32px; }
+    .headline { margin-bottom: 16px; border-left: 3px solid #2d6a4f; padding-left: 12px; }
+    .headline a { color: #1a4a2e; text-decoration: none; font-weight: bold; }
+    .headline p { margin: 4px 0 0; color: #555; font-size: 0.9em; }
+    .vn-summary { background: #f0f7f4; padding: 16px; border-radius: 6px; margin-bottom: 24px; }
+    .change-up { color: #2d6a4f; font-weight: bold; }
+    .change-down { color: #c0392b; font-weight: bold; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th { background: #2d6a4f; color: white; padding: 8px; text-align: left; font-size: 0.85em; }
+    td { padding: 7px 8px; font-size: 0.9em; border-bottom: 1px solid #e0e0e0; }
+    .no-data { color: #888; font-style: italic; }
+    .footer { margin-top: 40px; font-size: 0.8em; color: #999; border-top: 1px solid #eee; padding-top: 12px; }
+  </style>
+</head>
+<body>
+  <h1>Ban Tin Sang &mdash; Cafe Capital</h1>
+  <p>Xin chao! Day la ban tin buoi sang ngay <strong>{{ date }}</strong>.</p>
+
+  <h2>Kinh Te The Gioi</h2>
+  {% if headlines %}
+    {% for item in headlines %}
+      <div class="headline">
+        <a href="{{ item.link }}" target="_blank">{{ item.title }}</a>
+        {% if item.summary %}
+          <p>{{ item.summary }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="no-data">Khong co du lieu tin tuc hom nay.</p>
+  {% endif %}
+
+  <h2>Thi Truong Chung Khoan Viet Nam</h2>
+  <div class="vn-summary">
+    {% if vnindex.index is not none %}
+      <p>
+        <strong>VN-Index:</strong> {{ "%.2f"|format(vnindex.index) }}
+        {% if vnindex.change is not none %}
+          {% if vnindex.change >= 0 %}
+            <span class="change-up">+{{ "%.2f"|format(vnindex.change) }} (+{{ "%.2f"|format(vnindex.change_pct) }}%)</span>
+          {% else %}
+            <span class="change-down">{{ "%.2f"|format(vnindex.change) }} ({{ "%.2f"|format(vnindex.change_pct) }}%)</span>
+          {% endif %}
+        {% endif %}
+      </p>
+    {% else %}
+      <p class="no-data">Khong co du lieu VN-Index hom nay.</p>
+    {% endif %}
+
+    {% if vnindex.gainers %}
+      <table>
+        <tr><th colspan="3">Top tang manh</th></tr>
+        <tr><th>Ma CP</th><th>Gia (VND)</th><th>% Thay doi</th></tr>
+        {% for g in vnindex.gainers %}
+          <tr>
+            <td><strong>{{ g.ticker }}</strong></td>
+            <td>{{ g.price }}</td>
+            <td class="change-up">+{{ "%.2f"|format(g.change_pct) }}%</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+
+    {% if vnindex.losers %}
+      <table style="margin-top: 16px;">
+        <tr><th colspan="3">Top giam manh</th></tr>
+        <tr><th>Ma CP</th><th>Gia (VND)</th><th>% Thay doi</th></tr>
+        {% for l in vnindex.losers %}
+          <tr>
+            <td><strong>{{ l.ticker }}</strong></td>
+            <td>{{ l.price }}</td>
+            <td class="change-down">{{ "%.2f"|format(l.change_pct) }}%</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+  </div>
+
+  <div class="footer">
+    Ban tin duoc tao tu dong boi he thong Cafe Capital Morning Brief.<br>
+    Thoi gian: {{ date }} 06:00 SA (GMT+7)
+  </div>
+</body>
+</html>
