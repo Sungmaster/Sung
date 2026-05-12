@@ -1,0 +1,60 @@
+name: Cafe Capital Morning Brief PDF
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 07:00 AM Vietnam time (UTC+7)
+  workflow_dispatch:
+    inputs:
+      json_file:
+        description: 'Path to input JSON file (default: sample_data/sample_20260512.json)'
+        required: false
+        default: 'sample_data/sample_20260512.json'
+
+jobs:
+  generate-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies for WeasyPrint
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            libpango-1.0-0 \
+            libpangoft2-1.0-0 \
+            libcairo2 \
+            libgdk-pixbuf2.0-0 \
+            libffi-dev \
+            shared-mime-info
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Determine input JSON
+        id: input
+        run: |
+          JSON_FILE="${{ github.event.inputs.json_file || 'sample_data/sample_20260512.json' }}"
+          echo "json_file=$JSON_FILE" >> $GITHUB_OUTPUT
+
+      - name: Generate Morning Brief PDF
+        run: |
+          python3 scripts/generate_morning_brief_pdf.py \
+            "${{ steps.input.outputs.json_file }}" \
+            --out-dir output
+
+      - name: Upload PDF artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: morning-brief-pdf-${{ github.run_id }}
+          path: |
+            output/*.pdf
+            output/*.png
+          retention-days: 7
