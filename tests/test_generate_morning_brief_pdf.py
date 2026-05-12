@@ -135,3 +135,23 @@ def test_quality_check_flags_small_pdf(tmp_path):
     result = quality_check("<html></html>", str(pdf_path))
     assert result["ok"] is False
     assert any("small" in issue for issue in result["issues"])
+
+def test_run_pipeline_produces_pdf(tmp_path):
+    result = run_pipeline(
+        str(SAMPLE_JSON_PATH),
+        out_dir=str(tmp_path),
+        template_dir=str(_Path(__file__).parent.parent / "templates"),
+    )
+    assert "pdf_path" in result
+    assert _Path(result["pdf_path"]).exists()
+    assert _Path(result["pdf_path"]).stat().st_size > 10_000
+    assert result["quality"]["ok"] is True
+
+def test_run_pipeline_result_has_html(tmp_path):
+    result = run_pipeline(
+        str(SAMPLE_JSON_PATH),
+        out_dir=str(tmp_path),
+        template_dir=str(_Path(__file__).parent.parent / "templates"),
+    )
+    assert "<html" in result["html"]
+    assert "1287" in result["html"]
