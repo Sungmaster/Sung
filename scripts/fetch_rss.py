@@ -29,5 +29,9 @@ def fetch_headlines(max_per_feed: int = 4) -> list[dict]:
 def load_sample_headlines() -> list[dict]:
     data_dir = os.environ.get("SAMPLE_DATA_DIR", "sample_data")
     path = os.path.join(data_dir, "rss_sample.json")
-    with open(path) as f:
-        return json.load(f)
+    try:
+        with open(path) as f:
+            return json.load(f)
+    except Exception as e:
+        logging.error(f"Failed to load sample headlines from {path}: {e}")
+        raise

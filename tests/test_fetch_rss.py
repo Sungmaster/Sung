@@ -33,8 +33,9 @@ def test_headline_has_required_keys():
     entry.get = lambda k, d="": {"title": "Title", "summary": "Summary", "link": "http://x.com", "published": "Mon"}.get(k, d)
     mock_feed = MagicMock()
     mock_feed.entries = [entry]
-    # Use side_effect to return empty feed for first call, then feed with entry for second
-    with patch("scripts.fetch_rss.feedparser.parse", side_effect=[mock_feed, MagicMock(entries=[])]):
+    empty_feed = MagicMock()
+    empty_feed.entries = []
+    with patch("scripts.fetch_rss.feedparser.parse", side_effect=[mock_feed, empty_feed]):
         result = fetch_headlines()
     assert len(result) == 1
     assert set(result[0].keys()) == {"title", "summary", "link", "published"}
