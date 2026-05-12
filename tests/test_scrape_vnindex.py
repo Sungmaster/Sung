@@ -1,7 +1,8 @@
 import json
 import pytest
 from unittest.mock import patch, MagicMock
-from scripts.scrape_vnindex import scrape_vnindex, load_sample_vnindex, EMPTY_VNINDEX
+from bs4 import BeautifulSoup
+from scripts.scrape_vnindex import scrape_vnindex, load_sample_vnindex, _parse, EMPTY_VNINDEX
 
 
 MOCK_HTML = """
@@ -62,3 +63,11 @@ def test_load_sample_vnindex(tmp_path, monkeypatch):
     monkeypatch.setenv("SAMPLE_DATA_DIR", str(tmp_path))
     result = load_sample_vnindex()
     assert result == sample
+
+
+def test_parse_returns_empty_on_malformed_html():
+    soup = BeautifulSoup("<html><body></body></html>", "html.parser")
+    result = _parse(soup)
+    assert result["index"] is None
+    assert result["gainers"] == []
+    assert result["losers"] == []

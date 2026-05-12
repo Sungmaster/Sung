@@ -27,7 +27,7 @@ def scrape_vnindex() -> dict:
         return _parse(soup)
     except Exception as e:
         logging.warning(f"VnIndex scrape failed: {e}")
-        return EMPTY_VNINDEX
+        return {**EMPTY_VNINDEX, "gainers": [], "losers": []}
 
 
 def _parse(soup: BeautifulSoup) -> dict:
@@ -62,7 +62,7 @@ def _parse(soup: BeautifulSoup) -> dict:
         return {"index": index, "change": change, "change_pct": change_pct, "gainers": gainers, "losers": losers}
     except Exception as e:
         logging.warning(f"VnIndex parse failed: {e}")
-        return EMPTY_VNINDEX
+        return {**EMPTY_VNINDEX, "gainers": [], "losers": []}
 
 
 def load_sample_vnindex() -> dict:
