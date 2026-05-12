@@ -21,11 +21,17 @@ def test_run_calls_all_steps():
 
 def test_run_uses_sample_data_when_env_set(monkeypatch):
     monkeypatch.setenv("USE_SAMPLE_DATA", "true")
-    with patch("scripts.main.load_sample_headlines", return_value=SAMPLE_HEADLINES), \
-         patch("scripts.main.load_sample_vnindex", return_value=SAMPLE_VNINDEX), \
+    with patch("scripts.main.load_sample_headlines", return_value=SAMPLE_HEADLINES) as mock_sample_rss, \
+         patch("scripts.main.load_sample_vnindex", return_value=SAMPLE_VNINDEX) as mock_sample_vn, \
+         patch("scripts.main.fetch_headlines") as mock_live_rss, \
+         patch("scripts.main.scrape_vnindex") as mock_live_vn, \
          patch("scripts.main.generate_brief", return_value=SAMPLE_HTML), \
          patch("scripts.main.send_brief"):
         run()
+    mock_sample_rss.assert_called_once()
+    mock_sample_vn.assert_called_once()
+    mock_live_rss.assert_not_called()
+    mock_live_vn.assert_not_called()
 
 
 def test_run_raises_on_email_failure():

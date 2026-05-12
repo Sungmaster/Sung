@@ -30,5 +30,5 @@ if __name__ == "__main__":
     try:
         run()
     except Exception as e:
-        logging.error(f"Fatal error: {e}")
+        logging.error("Fatal error: %s", e, exc_info=True)
         sys.exit(1)
