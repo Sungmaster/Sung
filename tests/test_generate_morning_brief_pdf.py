@@ -57,3 +57,38 @@ def test_css_contains_a4_page():
     css = CSS_PATH.read_text()
     assert "@page" in css, "Missing @page rule for A4"
     assert "210mm" in css or "A4" in css, "Missing A4 dimensions"
+
+from jinja2 import Environment, FileSystemLoader, select_autoescape as _select_autoescape
+
+_TEMPLATE_DIR = str(_Path(__file__).parent.parent / "templates")
+_TEMPLATE_NAME = "morning_brief_template.html"
+
+def _render_template(data: dict) -> str:
+    env = Environment(
+        loader=FileSystemLoader(_TEMPLATE_DIR),
+        autoescape=_select_autoescape(["html"]),
+    )
+    tmpl = env.get_template(_TEMPLATE_NAME)
+    css = (_Path(_TEMPLATE_DIR) / "morning_brief_style.css").read_text()
+    return tmpl.render(**data, css_content=css, chart_uri=None)
+
+def test_template_renders_without_error(sample_data):
+    html = _render_template(sample_data)
+    assert "<html" in html
+
+def test_template_contains_vnindex(sample_data):
+    html = _render_template(sample_data)
+    assert "1287" in html
+
+def test_template_contains_scenarios(sample_data):
+    html = _render_template(sample_data)
+    assert "Co so" in html
+    assert "Tang gia" in html
+
+def test_template_contains_actions(sample_data):
+    html = _render_template(sample_data)
+    assert "VCB" in html
+
+def test_template_contains_disclaimer(sample_data):
+    html = _render_template(sample_data)
+    assert "Cafe Capital" in html
