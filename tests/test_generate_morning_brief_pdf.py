@@ -92,3 +92,46 @@ def test_template_contains_actions(sample_data):
 def test_template_contains_disclaimer(sample_data):
     html = _render_template(sample_data)
     assert "Cafe Capital" in html
+
+from scripts.generate_morning_brief_pdf import validate_data, generate_chart, render_html, quality_check, run_pipeline
+
+def test_validate_data_passes_with_valid_json(sample_data):
+    validate_data(sample_data)  # must not raise
+
+def test_validate_data_raises_on_missing_field(sample_data):
+    del sample_data["vnindex"]
+    with pytest.raises(ValueError, match="vnindex"):
+        validate_data(sample_data)
+
+def test_validate_data_raises_if_scenarios_do_not_sum_to_100(sample_data):
+    sample_data["scenarios"][0]["probability_pct"] = 99
+    with pytest.raises(ValueError, match="100"):
+        validate_data(sample_data)
+
+def test_generate_chart_creates_png(sample_data, tmp_path):
+    uri = generate_chart(sample_data, str(tmp_path))
+    assert uri.startswith("file:///"), f"Expected file:// URI, got: {uri}"
+    chart_path = tmp_path / "sector_chart.png"
+    assert chart_path.exists(), "sector_chart.png not created"
+    assert chart_path.stat().st_size > 1000, "Chart PNG too small"
+
+def test_render_html_contains_expected_content(sample_data, tmp_path):
+    uri = generate_chart(sample_data, str(tmp_path))
+    html = render_html(sample_data, uri, str(_Path(__file__).parent.parent / "templates"))
+    assert "<html" in html
+    assert "1287" in html
+    assert "VCB" in html
+
+def test_quality_check_passes_for_good_html_and_pdf(tmp_path):
+    pdf_path = tmp_path / "test.pdf"
+    pdf_path.write_bytes(b"%PDF-1.4 " + b"x" * 15000)
+    result = quality_check("<html><body>ok</body></html>", str(pdf_path))
+    assert result["ok"] is True
+    assert result["issues"] == []
+
+def test_quality_check_flags_small_pdf(tmp_path):
+    pdf_path = tmp_path / "tiny.pdf"
+    pdf_path.write_bytes(b"tiny")
+    result = quality_check("<html></html>", str(pdf_path))
+    assert result["ok"] is False
+    assert any("small" in issue for issue in result["issues"])
