@@ -1,5 +1,5 @@
-import pytest
 from pathlib import Path
+from datetime import date
 from scripts.generate_brief import generate_brief
 
 SAMPLE_HEADLINES = [
@@ -32,6 +32,7 @@ def test_generate_brief_saves_file(tmp_path):
     generate_brief(SAMPLE_HEADLINES, SAMPLE_VNINDEX, output_dir=str(tmp_path), template_dir=TEMPLATE_DIR)
     files = list(tmp_path.glob("*.html"))
     assert len(files) == 1
+    assert files[0].name == f"{date.today().isoformat()}.html"
 
 
 def test_generate_brief_empty_headlines(tmp_path):
