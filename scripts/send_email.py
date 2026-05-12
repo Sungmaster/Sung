@@ -22,7 +22,14 @@ def send_brief(html: str) -> None:
     if missing:
         raise EnvironmentError(f"Missing required environment variables: {', '.join(missing)}")
 
+    try:
+        port_int = int(port)
+    except ValueError:
+        raise EnvironmentError(f"SMTP_PORT must be a number, got: {port!r}")
+
     recipients = [r.strip() for r in recipients_raw.split(",") if r.strip()]
+    if not recipients:
+        raise EnvironmentError("EMAIL_RECIPIENTS is set but contains no valid addresses")
     today = date.today().strftime("%d/%m/%Y")
 
     msg = MIMEMultipart("alternative")
@@ -31,7 +38,7 @@ def send_brief(html: str) -> None:
     msg["To"] = ", ".join(recipients)
     msg.attach(MIMEText(html, "html", "utf-8"))
 
-    with smtplib.SMTP(host, int(port)) as server:
+    with smtplib.SMTP(host, port_int) as server:
         server.starttls()
         server.login(user, password)
         server.sendmail(user, recipients, msg.as_string())

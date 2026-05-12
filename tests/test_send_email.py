@@ -20,7 +20,7 @@ def test_send_brief_calls_smtp(monkeypatch):
 
 
 def test_send_brief_raises_on_missing_env():
-    with pytest.raises(EnvironmentError):
+    with pytest.raises(EnvironmentError, match="Missing required"):
         send_brief(SAMPLE_HTML)
 
 
@@ -38,3 +38,4 @@ def test_send_brief_multiple_recipients(monkeypatch):
         call_args = instance.sendmail.call_args
         assert "a@cafe.com" in call_args[0][1]
         assert "b@cafe.com" in call_args[0][1]
+        assert "c@cafe.com" in call_args[0][1]
