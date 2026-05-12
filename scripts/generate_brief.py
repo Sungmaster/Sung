@@ -1,6 +1,6 @@
 import os
 from datetime import date
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 
 def generate_brief(
@@ -11,7 +11,7 @@ def generate_brief(
 ) -> str:
     today = date.today()
     today_display = today.strftime("%d/%m/%Y")
-    env = Environment(loader=FileSystemLoader(template_dir))
+    env = Environment(loader=FileSystemLoader(template_dir), autoescape=select_autoescape(["html"]))
     template = env.get_template("morning_brief.html")
     html = template.render(date=today_display, headlines=headlines, vnindex=vnindex)
 

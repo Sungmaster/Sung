@@ -4,8 +4,8 @@ import os
 import feedparser
 
 RSS_FEEDS = [
-    "https://feeds.reuters.com/reuters/businessNews",
     "https://feeds.bbci.co.uk/news/business/rss.xml",
+    "https://feeds.apnews.com/rss/apf-business",
 ]
 
 
