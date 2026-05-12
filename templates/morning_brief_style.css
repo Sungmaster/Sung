@@ -1,0 +1,142 @@
+@page {
+    size: A4;
+    margin: 15mm 12mm 20mm 12mm;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --yellow: #F5B800;
+    --navy: #111827;
+    --positive: #047857;
+    --negative: #B91C1C;
+    --neutral: #92400E;
+    --light-bg: #F9FAFB;
+    --border: #E5E7EB;
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+    --font-main: 'Arial', sans-serif;
+}
+
+body {
+    font-family: var(--font-main);
+    font-size: 9pt;
+    color: var(--text-primary);
+    background: #fff;
+    line-height: 1.4;
+}
+
+.header {
+    background: var(--navy);
+    color: #fff;
+    padding: 10mm 12mm 8mm;
+    margin: -15mm -12mm 6mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px solid var(--yellow);
+}
+.header .brand { font-size: 20pt; font-weight: 700; letter-spacing: 1px; }
+.header .brand span { color: var(--yellow); }
+.header .meta { text-align: right; font-size: 8pt; opacity: 0.85; }
+.header .meta .date { font-size: 11pt; font-weight: 600; }
+
+.section-title {
+    font-size: 10pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    border-left: 3px solid var(--yellow);
+    padding-left: 6px;
+    margin: 5mm 0 3mm;
+}
+
+.summary-box {
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--yellow);
+    padding: 8px 10px;
+    margin-bottom: 4mm;
+    font-size: 9pt;
+    line-height: 1.5;
+}
+
+.index-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 4mm;
+}
+.index-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 10px;
+    min-width: 90px;
+    flex: 1;
+}
+.index-card .name { font-size: 7.5pt; color: var(--text-secondary); }
+.index-card .value { font-size: 10pt; font-weight: 700; }
+.index-card .change.up { color: var(--positive); }
+.index-card .change.down { color: var(--negative); }
+.index-card .change.flat { color: var(--neutral); }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin-bottom: 3mm;
+}
+th {
+    background: var(--navy);
+    color: #fff;
+    padding: 4px 6px;
+    text-align: left;
+    font-size: 7.5pt;
+    font-weight: 600;
+}
+td { padding: 3px 6px; border-bottom: 1px solid var(--border); }
+tr:nth-child(even) { background: var(--light-bg); }
+.up { color: var(--positive); font-weight: 600; }
+.down { color: var(--negative); font-weight: 600; }
+.flat { color: var(--neutral); }
+
+.scenarios { display: flex; gap: 6px; margin-bottom: 4mm; }
+.scenario-card {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px;
+}
+.scenario-card.base { border-top: 3px solid var(--yellow); }
+.scenario-card.bull { border-top: 3px solid var(--positive); }
+.scenario-card.bear { border-top: 3px solid var(--negative); }
+.scenario-card .s-name { font-weight: 700; font-size: 9pt; }
+.scenario-card .s-prob { font-size: 8pt; color: var(--text-secondary); }
+.scenario-card .s-target { font-size: 11pt; font-weight: 700; margin: 3px 0; }
+.scenario-card .s-desc { font-size: 7.5pt; color: var(--text-secondary); line-height: 1.4; }
+
+.tag { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 7pt; font-weight: 700; }
+.tag.buy { background: #D1FAE5; color: var(--positive); }
+.tag.hold { background: #FEF3C7; color: var(--neutral); }
+.tag.sell { background: #FEE2E2; color: var(--negative); }
+
+.calendar-row.high td:first-child { border-left: 3px solid var(--negative); }
+.calendar-row.medium td:first-child { border-left: 3px solid var(--neutral); }
+
+.chart-img { width: 100%; max-height: 60mm; object-fit: contain; margin: 3mm 0; }
+
+.footer {
+    position: fixed;
+    bottom: 8mm;
+    left: 12mm;
+    right: 12mm;
+    font-size: 6.5pt;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    padding-top: 3px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-break { page-break-after: always; break-after: page; }
