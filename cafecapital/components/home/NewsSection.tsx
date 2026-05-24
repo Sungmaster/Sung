@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Clock, User, ArrowRight, Zap, ChevronRight, Lock } from "lucide-react";
+import { Clock, User, ArrowRight, Zap, ChevronRight, Lock, Search, ArrowUpDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { newsArticles, quickNews } from "@/data/mockData";
 import type { NewsArticle } from "@/types";
@@ -81,11 +81,21 @@ function NewsCard({ article, featured }: { article: NewsArticle; featured?: bool
 
 export default function NewsSection() {
   const [activeCategory, setActiveCategory] = useState<Category>("Tất cả");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
 
-  const filtered =
-    activeCategory === "Tất cả"
-      ? newsArticles
-      : newsArticles.filter((a) => a.category === activeCategory);
+  const filtered = newsArticles
+    .filter((a) => activeCategory === "Tất cả" || a.category === activeCategory)
+    .filter((a) =>
+      searchQuery.trim() === "" ||
+      a.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (a.author ?? "").toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) =>
+      sortOrder === "newest"
+        ? b.publishedAt.localeCompare(a.publishedAt)
+        : a.publishedAt.localeCompare(b.publishedAt)
+    );
 
   return (
     <section id="tin-moi" className="py-16 sm:py-20 bg-soft-gray/50">
@@ -111,6 +121,27 @@ export default function NewsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left: News articles */}
           <div className="lg:col-span-2">
+            {/* Search + Sort bar */}
+            <div className="flex flex-col sm:flex-row gap-2 mb-4">
+              <div className="flex items-center gap-2 flex-1 bg-white rounded-xl px-3 py-2.5 border border-gray-200 focus-within:border-mid-teal/40 transition-colors shadow-sm">
+                <Search className="w-4 h-4 text-text-muted shrink-0" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Tìm kiếm theo tên bài, mã CP..."
+                  className="flex-1 bg-transparent text-sm text-text-dark placeholder:text-text-muted outline-none"
+                />
+              </div>
+              <button
+                onClick={() => setSortOrder((s) => (s === "newest" ? "oldest" : "newest"))}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-mid-teal/40 text-sm font-medium text-text-muted hover:text-mid-teal transition-all duration-150 cursor-pointer shrink-0 shadow-sm"
+              >
+                <ArrowUpDown className="w-3.5 h-3.5" />
+                {sortOrder === "newest" ? "Mới nhất" : "Cũ nhất"}
+              </button>
+            </div>
+
             {/* Category tabs */}
             <div className="flex gap-2 mb-6 overflow-x-auto pb-1 no-scrollbar">
               {categories.map((cat) => (

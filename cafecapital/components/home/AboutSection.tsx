@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Briefcase, Newspaper, BookOpen } from "lucide-react";
+import { ArrowRight, Briefcase, Newspaper, BookOpen, Info } from "lucide-react";
 import { aboutCards } from "@/data/mockData";
 
 const cardIcons: Record<string, React.ReactNode> = {
-  "Cafe Cap News": <Newspaper className="w-5 h-5" />,
+  "Giới thiệu về Cap": <Info className="w-5 h-5" />,
+  "Tin mới về Cap": <Newspaper className="w-5 h-5" />,
   "Tuyển dụng": <Briefcase className="w-5 h-5" />,
   "Chuyện nghề": <BookOpen className="w-5 h-5" />,
 };
@@ -51,13 +52,14 @@ export default function AboutSection() {
             {/* Stats */}
             <div className="mt-8 grid grid-cols-3 gap-4">
               {[
-                { value: "500+", label: "Báo cáo mỗi năm" },
-                { value: "10K+", label: "Nhà đầu tư theo dõi" },
-                { value: "5+", label: "Năm kinh nghiệm" },
+                { value: "500+", label: "Báo cáo mỗi năm", sub: "Phân tích chuyên sâu" },
+                { value: "10K+", label: "Nhà đầu tư", sub: "Đang theo dõi" },
+                { value: "5+", label: "Năm kinh nghiệm", sub: "Trên thị trường" },
               ].map((stat) => (
-                <div key={stat.label} className="text-center">
+                <div key={stat.label} className="text-center p-3 rounded-xl bg-soft-gray/60">
                   <div className="font-serif text-2xl font-bold text-deep-teal">{stat.value}</div>
-                  <div className="text-xs text-text-muted mt-1">{stat.label}</div>
+                  <div className="text-xs font-semibold text-text-dark mt-0.5">{stat.label}</div>
+                  <div className="text-xs text-text-muted">{stat.sub}</div>
                 </div>
               ))}
             </div>

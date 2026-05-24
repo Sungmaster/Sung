@@ -115,6 +115,36 @@ export const newsArticles: NewsArticle[] = [
     author: "Bộ phận Vĩ mô",
     source: "Cafe Capital",
   },
+  {
+    id: "6",
+    category: "Doanh nghiệp",
+    title: "VIC báo lãi trước thuế Q1/2026 tăng 28% nhờ mảng bất động sản phục hồi mạnh",
+    summary:
+      "Tập đoàn Vingroup ghi nhận lợi nhuận trước thuế hơn 3,200 tỷ đồng trong quý đầu năm. Doanh thu từ chuyển nhượng bất động sản tăng 41% so với cùng kỳ, đóng góp chủ yếu vào kết quả tích cực.",
+    publishedAt: "14:30, 22/05/2026",
+    author: "Phân tích Doanh nghiệp",
+    source: "Cafe Capital",
+  },
+  {
+    id: "7",
+    category: "Thị trường",
+    title: "Thanh khoản HoSE lập đỉnh tháng: 22,500 tỷ đồng trong một phiên — tín hiệu gì?",
+    summary:
+      "Khối lượng giao dịch đột biến xuất hiện tại nhóm cổ phiếu vốn hóa lớn. Đây có thể là dấu hiệu phân phối từ tay lớn hoặc dòng tiền tích luỹ trước mùa ĐHCĐ. Phân tích dòng tiền giúp nhận diện bản chất đợt tăng.",
+    publishedAt: "16:00, 22/05/2026",
+    author: "Nhóm Phân tích Cafe Capital",
+    source: "Cafe Capital",
+  },
+  {
+    id: "8",
+    category: "Kinh tế vĩ mô",
+    title: "CPI tháng 5 tăng 3.7% — lạm phát vẫn trong tầm kiểm soát của NHNN",
+    summary:
+      "Chỉ số giá tiêu dùng tháng 5/2026 tăng 3.7% so với cùng kỳ năm trước, thấp hơn mục tiêu 4.5% của Chính phủ. Nhóm lương thực, thực phẩm và nhiên liệu là hai yếu tố chủ chốt tác động lên lạm phát.",
+    publishedAt: "08:00, 22/05/2026",
+    author: "Bộ phận Vĩ mô",
+    source: "Cafe Capital",
+  },
 ];
 
 export const quickNews: QuickNews[] = [
@@ -142,6 +172,16 @@ export const quickNews: QuickNews[] = [
     id: "q5",
     content: "VCB và MBB dẫn đầu nhóm ngân hàng tăng, bổ sung tích cực cho chỉ số buổi sáng.",
     publishedAt: "09:10",
+  },
+  {
+    id: "q6",
+    content: "SSI Research nâng dự báo EPS ngành thép 2026 lên 15% nhờ giá nguyên liệu đầu vào giảm.",
+    publishedAt: "08:45",
+  },
+  {
+    id: "q7",
+    content: "Lợi suất trái phiếu Chính phủ kỳ hạn 10 năm giảm về 2.85%, mức thấp nhất từ đầu năm.",
+    publishedAt: "08:20",
   },
 ];
 
@@ -304,8 +344,15 @@ export const mediaItems: MediaItem[] = [
 
 export const aboutCards: AboutCard[] = [
   {
+    id: "a0",
+    title: "Giới thiệu về Cap",
+    description: "Tầm nhìn, sứ mệnh và câu chuyện xây dựng Cafe Capital — nền tảng nghiên cứu đầu tư cho nhà đầu tư Việt Nam hiện đại.",
+    items: ["Tầm nhìn & sứ mệnh", "Đội ngũ chuyên gia", "Triết lý phân tích"],
+    href: "/ve-chung-toi",
+  },
+  {
     id: "a1",
-    title: "Cafe Cap News",
+    title: "Tin mới về Cap",
     description: "Cập nhật từ nội bộ và chương trình dành riêng cho cộng đồng Cafe Capital.",
     items: ["Hoạt động nội bộ", "Chương trình ưu đãi khách hàng", "Sự kiện cộng đồng"],
     href: "/ve-chung-toi/news",

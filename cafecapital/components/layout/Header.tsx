@@ -159,7 +159,7 @@ export default function Header() {
                 className="hidden sm:inline-flex items-center px-4 py-2 text-sm font-semibold text-white rounded-full transition-all duration-200 hover:opacity-90 hover:scale-105 active:scale-95"
                 style={{ background: "linear-gradient(135deg, #0E5A5F, #003C3F)" }}
               >
-                Gói Dịch Vụ
+                Dịch vụ
               </Link>
 
               {/* Mobile hamburger */}
@@ -229,7 +229,7 @@ export default function Header() {
                   style={{ background: "linear-gradient(135deg, #0E5A5F, #003C3F)" }}
                   onClick={() => setMobileOpen(false)}
                 >
-                  Gói Dịch Vụ
+                  Dịch vụ
                 </Link>
               </div>
             </div>
