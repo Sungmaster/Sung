@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AboutHero from "@/components/about/AboutHero";
-import AboutIntro from "@/components/about/AboutIntro";
+import AboutIntroWithImages from "@/components/about/AboutIntroWithImages";
 import TimelineSection from "@/components/about/TimelineSection";
+import PeopleSection from "@/components/about/PeopleSection";
+import EcosystemSection from "@/components/about/EcosystemSection";
 import AboutValues from "@/components/about/AboutValues";
 import AboutTabs from "@/components/about/AboutTabs";
-import TeamCultureSection from "@/components/about/TeamCultureSection";
 import AboutCTA from "@/components/about/AboutCTA";
 
 export const metadata: Metadata = {
@@ -21,11 +22,12 @@ export default function AboutPage() {
       <Header />
       <main>
         <AboutHero />
-        <AboutIntro />
+        <AboutIntroWithImages />
         <TimelineSection />
+        <PeopleSection />
+        <EcosystemSection />
         <AboutValues />
         <AboutTabs />
-        <TeamCultureSection />
         <AboutCTA />
       </main>
       <Footer />

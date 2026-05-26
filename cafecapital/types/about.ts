@@ -2,7 +2,8 @@ export type TimelineItem = {
   year: string;
   title: string;
   description: string;
-  tag?: string;
+  tag: string;
+  imageLabel?: string;
 };
 
 export type ValueItem = {
@@ -34,4 +35,11 @@ export type AboutTab = {
   categories: string[];
   articles?: AboutArticle[];
   jobs?: JobCard[];
+};
+
+export type VisualCard = {
+  title: string;
+  description?: string;
+  imageUrl?: string;
+  label?: string;
 };

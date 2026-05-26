@@ -7,6 +7,7 @@ export const cafeCapitalTimeline: TimelineItem[] = [
     description:
       "Cafe Capital hình thành từ nhu cầu xây dựng một không gian trao đổi thị trường có chọn lọc, nơi nhà đầu tư có thể cập nhật thông tin, chia sẻ góc nhìn và cùng nhau nâng cao tư duy đầu tư.",
     tag: "Community",
+    imageLabel: "Investor Community",
   },
   {
     year: "2025",
@@ -14,13 +15,15 @@ export const cafeCapitalTimeline: TimelineItem[] = [
     description:
       "Cafe Capital mở rộng các tuyến nội dung về tin nhanh, nhận định thị trường, phân tích dòng tiền, nhóm ngành và các chủ đề vĩ mô có tác động trực tiếp đến quyết định đầu tư.",
     tag: "Content",
+    imageLabel: "Market Content",
   },
   {
     year: "2025",
-    title: "Ra mắt các bản tin và chương trình định kỳ",
+    title: "Ra mắt Cafe Chiến Lược và bản tin định kỳ",
     description:
       "Các format như Cafe Chiến Lược, bản tin ngày, livestream và nội dung phân tích chuyên sâu được phát triển nhằm giúp nhà đầu tư theo dõi thị trường đều đặn và có hệ thống hơn.",
     tag: "Media",
+    imageLabel: "Cafe Strategy",
   },
   {
     year: "2026",
@@ -28,13 +31,15 @@ export const cafeCapitalTimeline: TimelineItem[] = [
     description:
       "Cafe Capital từng bước số hóa hệ sinh thái nội dung với website CafeCapital.vn, tích hợp tin tức, báo cáo, phân tích kỹ thuật, media, dịch vụ thành viên và các khu vực nội dung premium.",
     tag: "Platform",
+    imageLabel: "Digital Platform",
   },
   {
     year: "2026",
     title: "Hoàn thiện mô hình dịch vụ đầu tư chuyên sâu",
     description:
-      "Cafe Capital phát triển các gói dịch vụ Free, Hạng Bạc, Hạng Vàng và Hạng Kim Cương, hướng tới việc phục vụ nhiều nhóm nhà đầu tư với nhu cầu khác nhau về báo cáo, dữ liệu và tư vấn.",
+      "Cafe Capital phát triển các gói dịch vụ Free, Hạng Bạc, Hạng Vàng và Hạng Kim Cương, hướng tới phục vụ nhiều nhóm nhà đầu tư với nhu cầu khác nhau về báo cáo, dữ liệu và tư vấn.",
     tag: "Premium Service",
+    imageLabel: "Premium Research",
   },
 ];
 
@@ -46,7 +51,7 @@ export const aboutTabs: AboutTab[] = [
     subtitle:
       "Cập nhật những hoạt động mới nhất của Cafe Capital: sự kiện cộng đồng, chương trình ưu đãi, hoạt động nội bộ và các dấu mốc phát triển.",
     content:
-      "Cafe Cap News là nơi ghi lại các chuyển động của Cafe Capital trong quá trình đồng hành cùng nhà đầu tư. Từ livestream, chương trình đào tạo, ưu đãi mở tài khoản, đến các hoạt động cộng đồng – tất cả đều được cập nhật nhằm giúp khách hàng theo dõi sát hơn những giá trị mà Cafe Capital đang xây dựng.",
+      "Cafe Cap News là nơi cập nhật các hoạt động mới nhất của Cafe Capital: livestream, chương trình cộng đồng, ưu đãi khách hàng, dấu mốc phát triển và các hoạt động nội bộ.",
     categories: [
       "Hoạt động cộng đồng",
       "Chương trình ưu đãi",
@@ -81,7 +86,7 @@ export const aboutTabs: AboutTab[] = [
     subtitle:
       "Gia nhập Cafe Capital để cùng xây dựng một hệ sinh thái đầu tư chuyên nghiệp, nơi kiến thức tài chính, công nghệ, nội dung và trải nghiệm khách hàng được kết nối.",
     content:
-      "Cafe Capital tìm kiếm những con người có tư duy thị trường, tinh thần học hỏi và mong muốn phát triển dài hạn trong lĩnh vực tài chính – chứng khoán. Chúng tôi không chỉ cần người làm việc, mà cần những cộng sự có khả năng quan sát thị trường, hiểu khách hàng và cùng tạo ra giá trị thực tế cho nhà đầu tư.",
+      "Cafe Capital tìm kiếm những cộng sự có tư duy thị trường, tinh thần học hỏi và mong muốn phát triển dài hạn trong lĩnh vực tài chính – chứng khoán.",
     categories: [
       "Môi giới & Tư vấn đầu tư",
       "Phân tích thị trường",
@@ -92,7 +97,7 @@ export const aboutTabs: AboutTab[] = [
       {
         title: "Chuyên viên Tư vấn đầu tư",
         description:
-          "Đồng hành cùng khách hàng trong quá trình mở tài khoản, phân tích danh mục, tư vấn chiến lược và hỗ trợ nhà đầu tư ra quyết định dựa trên dữ liệu và kịch bản thị trường.",
+          "Đồng hành cùng khách hàng trong quá trình mở tài khoản, phân tích danh mục, tư vấn chiến lược và hỗ trợ nhà đầu tư ra quyết định dựa trên dữ liệu.",
         cta: "Ứng tuyển ngay",
       },
       {
@@ -116,7 +121,7 @@ export const aboutTabs: AboutTab[] = [
     subtitle:
       "Những góc nhìn phía sau nghề chứng khoán: triết lý đầu tư, kinh nghiệm thị trường, bài học từ những chu kỳ tăng giảm và câu chuyện thực chiến.",
     content:
-      "Chuyện nghề là nơi Cafe Capital chia sẻ những bài viết dài hơi hơn về tư duy đầu tư, kinh nghiệm tư vấn, cách đọc thị trường và những bài học được đúc kết qua từng giai đoạn. Đây không phải là nơi hô hào mua bán, mà là nơi giúp nhà đầu tư hiểu sâu hơn về bản chất của thị trường và kỷ luật trong đầu tư.",
+      "Chuyện nghề là nơi chia sẻ những góc nhìn phía sau nghề chứng khoán: triết lý đầu tư, kinh nghiệm thị trường, quản trị rủi ro và câu chuyện thực chiến của người làm nghề.",
     categories: [
       "Triết lý đầu tư",
       "Kinh nghiệm thị trường",
