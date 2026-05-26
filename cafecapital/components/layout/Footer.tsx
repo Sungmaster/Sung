@@ -7,7 +7,7 @@ const quickLinks = [
   { label: "Phân tích", href: "/phan-tich" },
   { label: "Media", href: "/media" },
   { label: "Gói dịch vụ", href: "#goi-dich-vu" },
-  { label: "Về chúng tôi", href: "/ve-chung-toi" },
+  { label: "Về chúng tôi", href: "/about" },
 ];
 
 const contactInfo = [

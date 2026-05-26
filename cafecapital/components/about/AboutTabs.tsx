@@ -46,6 +46,7 @@ export default function AboutTabs() {
             return (
               <button
                 key={t.key}
+                type="button"
                 onClick={() => setActive(t.key)}
                 className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
                   isActive
@@ -116,7 +117,7 @@ export default function AboutTabs() {
                     <p className="text-text-muted text-xs leading-relaxed mb-4">
                       {article.description}
                     </p>
-                    <button className="flex items-center gap-1.5 text-gold text-xs font-medium hover:gap-2.5 transition-all duration-200">
+                    <button type="button" className="flex items-center gap-1.5 text-gold text-xs font-medium hover:gap-2.5 transition-all duration-200">
                       {article.cta}
                       <ArrowRight size={13} />
                     </button>
@@ -153,7 +154,7 @@ export default function AboutTabs() {
                       <p className="text-text-muted text-xs leading-relaxed mb-4">
                         {job.description}
                       </p>
-                      <button className="flex items-center gap-1.5 text-mid-teal text-xs font-medium hover:gap-2.5 transition-all duration-200">
+                      <button type="button" className="flex items-center gap-1.5 text-mid-teal text-xs font-medium hover:gap-2.5 transition-all duration-200">
                         {job.cta}
                         <ArrowRight size={13} />
                       </button>
@@ -174,7 +175,9 @@ export default function AboutTabs() {
                     dài.
                   </p>
                   <a
-                    href="#"
+                    href="https://forms.google.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-deep-teal text-white text-sm font-semibold hover:bg-mid-teal transition-colors"
                   >
                     Gửi CV qua Google Form

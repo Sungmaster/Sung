@@ -64,7 +64,7 @@ export default function TeamCultureSection() {
               className="relative"
             >
               {/* Number */}
-              <div className="absolute -top-3 -left-1 font-serif text-6xl font-bold text-soft-gray select-none pointer-events-none">
+              <div aria-hidden="true" className="absolute -top-3 -left-1 font-serif text-6xl font-bold text-soft-gray select-none pointer-events-none">
                 0{i + 1}
               </div>
               <div className="relative pt-6">

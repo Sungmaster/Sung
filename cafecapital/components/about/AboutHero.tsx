@@ -3,6 +3,12 @@
 import { motion } from "framer-motion";
 import { Coffee, TrendingUp, BarChart2, FileText, Zap } from "lucide-react";
 
+const CHART_COLORS = {
+  active: "#DFA15F",
+  recent: "rgba(223,161,95,0.5)",
+  past: "rgba(14,90,95,0.6)",
+};
+
 export default function AboutHero() {
   return (
     <section className="relative min-h-[92vh] flex items-center overflow-hidden bg-dark-teal grain-overlay">
@@ -106,10 +112,10 @@ export default function AboutHero() {
                             height: `${h}%`,
                             background:
                               i === 11
-                                ? "#DFA15F"
+                                ? CHART_COLORS.active
                                 : i > 7
-                                ? "rgba(223,161,95,0.5)"
-                                : "rgba(14,90,95,0.6)",
+                                ? CHART_COLORS.recent
+                                : CHART_COLORS.past,
                           }}
                         />
                       )

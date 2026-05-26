@@ -43,11 +43,11 @@ export const menuItems: MenuItem[] = [
   },
   {
     label: "Về chúng tôi",
-    href: "/ve-chung-toi",
+    href: "/about",
     children: [
-      { label: "Cafe Cap News", href: "/ve-chung-toi/news" },
-      { label: "Tuyển dụng", href: "/ve-chung-toi/tuyen-dung" },
-      { label: "Chuyện nghề", href: "/ve-chung-toi/chuyen-nghe" },
+      { label: "Cafe Cap News", href: "/about#cafe-cap-news" },
+      { label: "Tuyển dụng", href: "/about#tuyen-dung" },
+      { label: "Chuyện nghề", href: "/about#chuyen-nghe" },
     ],
   },
 ];
