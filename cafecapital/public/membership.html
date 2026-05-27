@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hướng dẫn các gói hội viên – Cafe Capital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:          #0E0D0B;
+      --bg-alt:      #141210;
+      --bg-card:     #191611;
+      --bg-card2:    rgba(255,255,255,0.032);
+      --gold:        #D4AF37;
+      --gold-muted:  #BFA46A;
+      --gold-faint:  rgba(212,175,55,0.14);
+      --gold-border: rgba(212,175,55,0.22);
+      --gold-glow:   rgba(212,175,55,0.08);
+      --ivory:       #F5F0E6;
+      --ivory-muted: #D6CFC3;
+      --text-muted:  #B9AD9C;
+      --text-dim:    #7A7166;
+      --border:      rgba(255,255,255,0.07);
+      --brown:       #6F4E37;
+      --serif:       'Playfair Display', Georgia, 'Times New Roman', serif;
+      --sans:        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      --max-w:       1160px;
+      --radius:      4px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ivory);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-border); border-radius: 2px; }
+
+    /* ─── UTILITIES ─── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+      margin: 0;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border: 1px solid var(--gold-border);
+      color: var(--gold-muted);
+      border-radius: 2px;
+      background: var(--gold-glow);
+    }
+    .check { color: var(--gold-muted); }
+    .cross { color: var(--text-dim); }
+    .partial { color: var(--gold-muted); font-style: italic; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,13,11,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-border);
+    }
+
+    .header-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .logo-name {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ivory);
+      letter-spacing: 0.02em;
+    }
+    .logo-sub {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      opacity: 0.8;
+    }
+
+    nav { display: flex; align-items: center; gap: 28px; }
+    nav a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--ivory); }
+
+    .btn-zalo-sm {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border: 1px solid var(--gold-border);
+      color: var(--gold-muted);
+      background: transparent;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .btn-zalo-sm:hover {
+      background: var(--gold-faint);
+      color: var(--gold);
+    }
+
+    .header-nav-mobile { display: none; }
+
+    /* ─── HERO ─── */
+    #overview {
+      background: var(--bg);
+      padding: 96px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    #overview::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-left { }
+    .hero-left .eyebrow { margin-bottom: 20px; }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 600;
+      line-height: 1.18;
+      color: var(--ivory);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .hero-title em { font-style: italic; color: var(--gold-muted); }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--ivory-muted);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .hero-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 460px;
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      background: var(--gold);
+      color: #0E0D0B;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-muted); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      background: transparent;
+      color: var(--ivory-muted);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--gold-border); color: var(--ivory); }
+
+    /* Dossier card */
+    .dossier-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .dossier-header {
+      padding: 16px 22px 14px;
+      border-bottom: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .dossier-header-left { }
+    .dossier-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 3px;
+    }
+    .dossier-title-sm {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--ivory);
+      font-weight: 500;
+    }
+    .dossier-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.7;
+    }
+
+    .dossier-body { padding: 6px 0; }
+
+    .dossier-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 14px 22px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .dossier-row:last-child { border-bottom: none; }
+    .dossier-row:hover { background: rgba(212,175,55,0.03); }
+
+    .dossier-row-num {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--gold-border);
+      font-weight: 400;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 22px;
+      padding-top: 2px;
+    }
+    .dossier-row-content { }
+    .dossier-row-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 3px;
+    }
+    .dossier-row-text {
+      font-size: 13px;
+      color: var(--ivory-muted);
+      line-height: 1.5;
+    }
+
+    .dossier-footer {
+      padding: 12px 22px;
+      border-top: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .dossier-footer-text {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+    .dossier-tier-pill {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* ─── SECTION COMMON ─── */
+    .section {
+      padding: 88px 0;
+    }
+    .section-alt {
+      background: var(--bg-alt);
+    }
+    .section-header {
+      margin-bottom: 52px;
+    }
+    .section-header .eyebrow { margin-bottom: 14px; }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 600;
+      color: var(--ivory);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+    .section-header.centered { text-align: center; }
+    .section-header.centered .section-desc { margin: 0 auto; }
+
+    /* ─── PHILOSOPHY ─── */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--gold-border);
+      border: 1px solid var(--gold-border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .philosophy-card {
+      background: var(--bg-card);
+      padding: 32px 28px;
+      position: relative;
+    }
+    .philosophy-num {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--gold-border);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+    .philosophy-card-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .philosophy-card-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── TIERS ─── */
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .tier-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .tier-card:hover { border-color: var(--gold-border); }
+
+    .tier-card.featured-silver {
+      border-color: rgba(180,180,200,0.25);
+    }
+    .tier-card.featured-gold {
+      border-color: var(--gold-border);
+      background: linear-gradient(160deg, #1B1712 0%, #191611 100%);
+      box-shadow: 0 0 0 1px var(--gold-border) inset, 0 8px 32px rgba(212,175,55,0.06);
+    }
+    .tier-card.featured-diamond {
+      border-color: rgba(212,175,55,0.35);
+      background: linear-gradient(160deg, #17140F 0%, #141210 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .tier-card.featured-diamond::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .tier-card-top {
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tier-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      min-height: 22px;
+    }
+    .tier-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 4px;
+    }
+    .tier-access-level {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 10px;
+    }
+    .tier-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .tier-list {
+      list-style: none;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    .tier-list li {
+      font-size: 12.5px;
+      color: var(--ivory-muted);
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+    .tier-list li:last-child { border-bottom: none; }
+    .tier-list li::before {
+      content: '—';
+      color: var(--gold-border);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .tier-list li.limitation {
+      color: var(--text-dim);
+    }
+    .tier-list li.limitation::before {
+      content: '×';
+      color: var(--text-dim);
+    }
+    .tier-list li.highlight::before {
+      content: '◆';
+      color: var(--gold-muted);
+      font-size: 9px;
+    }
+
+    .tier-cta {
+      margin-top: auto;
+    }
+    .tier-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 11px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      background: transparent;
+    }
+    .tier-btn:hover { border-color: var(--gold-border); color: var(--ivory); }
+    .tier-btn.gold-btn {
+      border-color: var(--gold-border);
+      color: var(--gold-muted);
+    }
+    .tier-btn.gold-btn:hover { background: var(--gold-faint); color: var(--gold); }
+    .tier-btn.primary-btn {
+      background: var(--gold);
+      color: #0E0D0B;
+      border-color: var(--gold);
+    }
+    .tier-btn.primary-btn:hover { background: var(--gold-muted); border-color: var(--gold-muted); }
+
+    /* ─── COMPARISON TABLE ─── */
+    #comparison { scroll-margin-top: 70px; }
+
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--gold-border);
+      border-radius: 6px;
+    }
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 620px;
+      background: var(--bg-card);
+    }
+    .comp-table thead tr {
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .comp-table th {
+      padding: 16px 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-align: center;
+    }
+    .comp-table th:first-child { text-align: left; color: var(--text-muted); }
+    .comp-table th.col-gold { color: var(--gold-muted); }
+    .comp-table th.col-diamond { color: var(--gold); }
+
+    .comp-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .comp-table tbody tr:last-child { border-bottom: none; }
+    .comp-table tbody tr:hover { background: rgba(255,255,255,0.015); }
+
+    .comp-table td {
+      padding: 14px 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      vertical-align: middle;
+    }
+    .comp-table td:first-child {
+      text-align: left;
+      color: var(--ivory-muted);
+      font-size: 13px;
+    }
+    .comp-table td.col-gold {
+      background: rgba(212,175,55,0.03);
+    }
+    .comp-table td.col-diamond {
+      background: rgba(212,175,55,0.05);
+    }
+    .comp-table .yes { color: var(--gold-muted); font-weight: 600; }
+    .comp-table .no { color: var(--text-dim); }
+    .comp-table .partial-text { color: var(--gold-muted); font-style: italic; font-size: 12px; }
+    .comp-table .note-text { font-size: 11px; color: var(--gold-muted); font-style: italic; }
+
+    /* ─── WHICH TIER ─── */
+    .which-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .which-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 24px;
+      transition: border-color 0.2s;
+    }
+    .which-card:hover { border-color: var(--gold-border); }
+    .which-tier-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 10px;
+    }
+    .which-card-title {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--ivory);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .which-card-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .which-summary {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 6px;
+      padding: 22px 28px;
+      text-align: center;
+    }
+    .which-summary p {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-style: italic;
+      color: var(--ivory-muted);
+      line-height: 1.6;
+    }
+    .which-summary span { color: var(--gold-muted); }
+
+    /* ─── PROCESS ─── */
+    #register { scroll-margin-top: 70px; }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      margin-bottom: 44px;
+    }
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-border), var(--gold-border), transparent);
+    }
+
+    .process-step {
+      padding: 0 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-num-wrap {
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--gold-border);
+      border-radius: 50%;
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .step-num {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--gold-muted);
+    }
+    .step-title {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .step-text {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .process-cta { text-align: center; }
+
+    /* ─── NOTES ─── */
+    .notes-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 6px;
+      padding: 32px 36px;
+      position: relative;
+    }
+    .notes-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .notes-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold-border);
+    }
+    .notes-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .notes-list li {
+      padding: 14px 0;
+      font-size: 13.5px;
+      color: var(--ivory-muted);
+      line-height: 1.65;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .notes-list li:nth-last-child(-n+2) { border-bottom: none; }
+    .notes-list li::before {
+      content: '›';
+      color: var(--gold-muted);
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: -1px;
+    }
+    .notes-list li:nth-child(odd) { padding-right: 32px; }
+    .notes-list li:nth-child(even) { padding-left: 32px; border-left: 1px solid var(--border); }
+
+    /* ─── FINAL CTA ─── */
+    .final-cta-section {
+      padding: 96px 0;
+      background: var(--bg-alt);
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta-section::before {
+      content: '';
+      position: absolute;
+      top: -160px; right: -160px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .final-cta-inner {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .final-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+    }
+    .final-title {
+      font-family: var(--serif);
+      font-size: clamp(22px, 3.5vw, 36px);
+      font-weight: 600;
+      color: var(--ivory);
+      line-height: 1.22;
+      margin-bottom: 18px;
+    }
+    .final-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .final-cta-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .final-tagline {
+      margin-top: 32px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--gold-border);
+      padding: 32px 0;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--gold-muted);
+    }
+    .footer-brand span { font-weight: 600; }
+    .footer-note {
+      font-size: 11px;
+      color: var(--text-dim);
+      max-width: 420px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .tiers-grid { grid-template-columns: 1fr 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .process-grid::before { display: none; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .dossier-card { display: none; }
+    }
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+      #overview { padding: 72px 0 60px; }
+      .philosophy-grid { grid-template-columns: 1fr; gap: 0; }
+      .tiers-grid { grid-template-columns: 1fr; }
+      .which-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .notes-list { grid-template-columns: 1fr; }
+      .notes-list li:nth-child(odd) { padding-right: 0; }
+      .notes-list li:nth-child(even) { padding-left: 0; border-left: none; }
+      .notes-list li:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .notes-list li:last-child { border-bottom: none; }
+      nav { display: none; }
+      .header-nav-mobile { display: block; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-note { text-align: center; }
+      .notes-card { padding: 24px 20px; }
+      .container { padding: 0 18px; }
+    }
+    @media (max-width: 500px) {
+      .final-cta-btns { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .hero-cta { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-name">Cafe Capital</span>
+        <span class="logo-sub">Membership</span>
+      </div>
+      <nav>
+        <a href="#overview">Tổng quan</a>
+        <a href="#plans">Gói hội viên</a>
+        <a href="#comparison">So sánh</a>
+        <a href="#register">Đăng ký</a>
+      </nav>
+      <a href="https://zalo.me/cafecapital" target="_blank" rel="noopener" class="btn-zalo-sm header-nav-mobile">Zalo</a>
+      <a href="https://zalo.me/cafecapital" target="_blank" rel="noopener" class="btn-zalo-sm" style="display:none;" id="nav-desktop-zalo">Liên hệ Zalo</a>
+    </div>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section id="overview">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="eyebrow">Private Investor Membership</span>
+          <h1 class="hero-title">Hướng dẫn các gói<br/><em>hội viên Cafe Capital</em></h1>
+          <p class="hero-subtitle">Lựa chọn gói hội viên phù hợp để truy cập báo cáo thị trường, nhận định chiến lược và các phân tích chuyên sâu từ Cafe Capital.</p>
+          <p class="hero-desc">Từ theo dõi thị trường định kỳ đến phân tích doanh nghiệp chuyên sâu và tư vấn 1:1, hệ thống hội viên được thiết kế cho nhà đầu tư muốn ra quyết định dựa trên thông tin có cấu trúc.</p>
+          <div class="hero-cta">
+            <a href="https://zalo.me/cafecapital" target="_blank" rel="noopener" class="btn-primary">Liên hệ Zalo để đăng ký</a>
+            <a href="#comparison" class="btn-secondary">Xem bảng quyền lợi</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="dossier-card">
+            <div class="dossier-header">
+              <div class="dossier-header-left">
+                <div class="dossier-label">Investor Access Brief</div>
+                <div class="dossier-title-sm">Cafe Capital — Membership</div>
+              </div>
+              <div class="dossier-dot"></div>
+            </div>
+            <div class="dossier-body">
+              <div class="dossier-row">
+                <div class="dossier-row-num">I</div>
+                <div class="dossier-row-content">
+                  <div class="dossier-row-label">Market Briefing</div>
+                  <div class="dossier-row-text">Báo cáo ngày &amp; tuần — cập nhật thị trường định kỳ có cấu trúc</div>
+                </div>
+              </div>
+              <div class="dossier-row">
+                <div class="dossier-row-num">II</div>
+                <div class="dossier-row-content">
+                  <div class="dossier-row-label">Research Access</div>
+                  <div class="dossier-row-text">Báo cáo thị trường, vĩ mô, ngành có sẵn theo từng giai đoạn</div>
+                </div>
+              </div>
+              <div class="dossier-row">
+                <div class="dossier-row-num">III</div>
+                <div class="dossier-row-content">
+                  <div class="dossier-row-label">Company Deep-dive</div>
+                  <div class="dossier-row-text">Báo cáo doanh nghiệp chuyên sâu theo mã cổ phiếu theo yêu cầu</div>
+                </div>
+              </div>
+              <div class="dossier-row">
+                <div class="dossier-row-num">IV</div>
+                <div class="dossier-row-content">
+                  <div class="dossier-row-label">Private Advisory</div>
+                  <div class="dossier-row-text">Tư vấn 1:1 với chuyên gia — chỉ có ở Hạng Kim Cương</div>
+                </div>
+              </div>
+            </div>
+            <div class="dossier-footer">
+              <span class="dossier-footer-text">Access Level</span>
+              <span class="dossier-tier-pill">Free → Bạc → Vàng → Kim Cương</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── PHILOSOPHY ── -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Tổng quan</span>
+        <h2 class="section-title">Cafe Capital Membership là gì?</h2>
+        <p class="section-desc">Cafe Capital Membership là hệ thống hội viên dành cho nhà đầu tư muốn tiếp cận các báo cáo thị trường, nhận định chiến lược và nội dung phân tích chuyên sâu. Người dùng có thể bắt đầu với gói Free hoặc nâng cấp lên các hạng cao hơn để mở khóa báo cáo định kỳ, báo cáo doanh nghiệp và dịch vụ tư vấn 1:1.</p>
+      </div>
+      <div class="philosophy-grid">
+        <div class="philosophy-card">
+          <div class="philosophy-num">01</div>
+          <div class="philosophy-card-title">Theo dõi thị trường bài bản</div>
+          <p class="philosophy-card-text">Cập nhật các báo cáo định kỳ, nhận định thị trường và góc nhìn chiến lược được biên soạn có hệ thống theo ngày và tuần.</p>
+        </div>
+        <div class="philosophy-card">
+          <div class="philosophy-num">02</div>
+          <div class="philosophy-card-title">Đào sâu doanh nghiệp</div>
+          <p class="philosophy-card-text">Tiếp cận báo cáo doanh nghiệp chuyên sâu theo mã cổ phiếu — có sẵn trên hệ thống hoặc order theo yêu cầu hàng tháng.</p>
+        </div>
+        <div class="philosophy-card">
+          <div class="philosophy-num">03</div>
+          <div class="philosophy-card-title">Đồng hành cùng chuyên gia</div>
+          <p class="philosophy-card-text">Nhận tư vấn 1:1 ở hạng hội viên cao nhất, phù hợp với nhu cầu cá nhân hóa danh mục và chiến lược đầu tư riêng.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── TIERS ── -->
+  <section class="section" id="plans">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="eyebrow">Membership Tiers</span>
+        <h2 class="section-title">Các gói hội viên</h2>
+        <p class="section-desc">Mỗi hạng hội viên được thiết kế theo một mức độ nhu cầu khác nhau: từ trải nghiệm nội dung cơ bản, theo dõi thị trường định kỳ, đào sâu doanh nghiệp đến đồng hành chiến lược 1:1.</p>
+      </div>
+
+      <div class="tiers-grid">
+
+        <!-- FREE -->
+        <div class="tier-card">
+          <div class="tier-card-top">
+            <div class="tier-badge-row">
+              <span class="tier-access-level">Basic Access</span>
+            </div>
+            <div class="tier-name">Free</div>
+            <p class="tier-desc">Trải nghiệm các nội dung nhận định cơ bản trước khi nâng cấp lên gói chuyên sâu.</p>
+          </div>
+          <ul class="tier-list">
+            <li>Xem một số nội dung giới hạn trong tab Nhận định</li>
+            <li>Truy cập cơ bản vào hệ thống</li>
+            <li>Phù hợp với người dùng muốn trải nghiệm</li>
+            <li class="limitation">Không bao gồm Báo cáo ngày</li>
+            <li class="limitation">Không bao gồm Báo cáo tuần</li>
+            <li class="limitation">Không bao gồm Báo cáo doanh nghiệp chuyên sâu</li>
+          </ul>
+          <div class="tier-cta">
+            <a href="#" class="tier-btn">Trải nghiệm miễn phí</a>
+          </div>
+        </div>
+
+        <!-- SILVER -->
+        <div class="tier-card featured-silver">
+          <div class="tier-card-top">
+            <div class="tier-badge-row">
+              <span class="tier-access-level">Market Access</span>
+              <span class="badge">Phổ biến</span>
+            </div>
+            <div class="tier-name">Hạng Bạc</div>
+            <p class="tier-desc">Dành cho nhà đầu tư cần theo dõi thị trường hằng ngày, đọc đầy đủ báo cáo định kỳ nhưng chưa cần báo cáo doanh nghiệp chuyên sâu.</p>
+          </div>
+          <ul class="tier-list">
+            <li>Xem tất cả báo cáo có sẵn, trừ báo cáo doanh nghiệp chuyên sâu</li>
+            <li>Bao gồm Báo cáo ngày</li>
+            <li>Bao gồm Báo cáo tuần</li>
+            <li>Bao gồm báo cáo thị trường, vĩ mô, ngành có sẵn</li>
+            <li>Sử dụng đầy đủ các tính năng hiện có</li>
+            <li class="limitation">Không bao gồm Báo cáo doanh nghiệp chuyên sâu</li>
+          </ul>
+          <div class="tier-cta">
+            <a href="https://zalo.me/cafecapital" target="_blank" rel="noopener" class="tier-btn gold-btn">Liên hệ Zalo để đăng ký</a>
+          </div>
+        </div>
+
+        <!-- GOLD -->
+        <div class="tier-card featured-gold">
+          <div class="tier-card-top">
+            <div class="tier-badge-row">
+              <span class="tier-access-level">Research Access</span>
+              <span class="badge">Chuyên sâu</span>
+            </div>
+            <div class="tier-name">Hạng Vàng</div>
+            <p class="tier-desc">Dành cho nhà đầu tư cần phân tích sâu theo từng mã cổ phiếu, bao gồm quyền xem toàn bộ báo cáo có sẵn và order tối đa 5 báo cáo chuyên sâu theo mã mỗi tháng.</p>
+          </div>
+          <ul class="tier-list">
+            <li>Xem tất cả các báo cáo có sẵn trên hệ thống</li>
+            <li>Bao gồm Báo cáo ngày &amp; tuần</li>
+            <li>Bao gồm báo cáo thị trường, vĩ mô, ngành</li>
+            <li>Bao gồm Báo cáo doanh nghiệp chuyên sâu đã có sẵn</li>
+            <li class="highlight">Order tối đa 5 báo cáo doanh nghiệp chuyên sâu theo mã mỗi tháng</li>
+            <li>Sử dụng đầy đủ các tính năng hiện có</li>
+          </ul>
+          <div class="tier-cta">
+            <a href="https://zalo.me/cafecapital" target="_blank" rel="noopener" class="tier-btn primary-btn">Liên hệ Zalo để đăng ký</a>
+          </div>
+        </div>
+
+        <!-- DIAMOND -->
+        <div class="tier-card featured-diamond">
+          <div class="tier-card-top">
+            <div class="tier-badge-row">
+              <span class="tier-access-level">Private Advisory</span>
+              <span class="badge">Cao cấp nhất</span>
+            </div>
+            <div class="tier-name">Hạng Kim Cương</div>
+            <p class="tier-desc">Dành cho nhà đầu tư cần đồng hành chiến lược, tư vấn 1:1 và cá nhân hóa danh mục đầu tư.</p>
+          </div>
+          <ul class="tier-list">
+            <li>Toàn bộ quyền lợi của Hạng Vàng</li>
+            <li>Xem tất cả các báo cáo có sẵn trên hệ thống</li>
+            <li>Bao gồm Báo cáo doanh nghiệp chuyên sâu</li>
+            <li>Sử dụng đầy đủ các tính năng hiện có</li>
+            <li class="highlight">Tư vấn 1:1 với chuyên gia Cafe Capital</li>
+            <li class="highlight">Đồng hành chiến lược và tư vấn cá nhân hóa</li>
+          </ul>
+          <div class="tier-cta">
+            <a href="https://zalo.me/cafecapital" target="_blank" rel="noopener" class="tier-btn gold-btn">Liên hệ Zalo để đăng ký</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── COMPARISON TABLE ── -->
+  <section class="section section-alt" id="comparison">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">So sánh quyền lợi</span>
+        <h2 class="section-title">So sánh quyền lợi hội viên</h2>
+        <p class="section-desc">Bảng dưới đây giúp nhà đầu tư nhanh chóng xác định quyền truy cập nội dung và dịch vụ theo từng hạng hội viên.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Quyền lợi</th>
+              <th>Free</th>
+              <th>Hạng Bạc</th>
+              <th class="col-gold">Hạng Vàng</th>
+              <th class="col-diamond">Hạng Kim Cương</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Nội dung nhận định giới hạn</td>
+              <td class="yes">Có</td>
+              <td class="yes">Có</td>
+              <td class="yes col-gold">Có</td>
+              <td class="yes col-diamond">Có</td>
+            </tr>
+            <tr>
+              <td>Báo cáo ngày</td>
+              <td class="no">Không</td>
+              <td class="yes">Có</td>
+              <td class="yes col-gold">Có</td>
+              <td class="yes col-diamond">Có</td>
+            </tr>
+            <tr>
+              <td>Báo cáo tuần</td>
+              <td class="no">Không</td>
+              <td class="yes">Có</td>
+              <td class="yes col-gold">Có</td>
+              <td class="yes col-diamond">Có</td>
+            </tr>
+            <tr>
+              <td>Báo cáo thị trường / vĩ mô / ngành có sẵn</td>
+              <td class="partial-text">Giới hạn</td>
+              <td class="yes">Có</td>
+              <td class="yes col-gold">Có</td>
+              <td class="yes col-diamond">Có</td>
+            </tr>
+            <tr>
+              <td>Báo cáo doanh nghiệp chuyên sâu có sẵn</td>
+              <td class="no">Không</td>
+              <td class="no">Không</td>
+              <td class="yes col-gold">Có</td>
+              <td class="yes col-diamond">Có</td>
+            </tr>
+            <tr>
+              <td>Order báo cáo chuyên sâu theo mã</td>
+              <td class="no">Không</td>
+              <td class="no">Không</td>
+              <td class="note-text col-gold">Tối đa 5 mã/tháng</td>
+              <td class="note-text col-diamond">Theo chính sách riêng</td>
+            </tr>
+            <tr>
+              <td>Tính năng hệ thống</td>
+              <td class="partial-text">Cơ bản</td>
+              <td class="yes">Đầy đủ</td>
+              <td class="yes col-gold">Đầy đủ</td>
+              <td class="yes col-diamond">Đầy đủ</td>
+            </tr>
+            <tr>
+              <td>Tư vấn 1:1 chuyên gia</td>
+              <td class="no">Không</td>
+              <td class="no">Không</td>
+              <td class="no col-gold">Không</td>
+              <td class="yes col-diamond">Có</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── WHICH TIER ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Hướng dẫn lựa chọn</span>
+        <h2 class="section-title">Nên chọn gói nào?</h2>
+      </div>
+      <div class="which-grid">
+        <div class="which-card">
+          <div class="which-tier-label">Hạng Bạc</div>
+          <div class="which-card-title">Theo dõi thị trường và chiến lược định kỳ</div>
+          <p class="which-card-text">Chọn Hạng Bạc nếu bạn cần đọc báo cáo ngày, báo cáo tuần và theo dõi các nhận định thị trường một cách có hệ thống — mà chưa cần đặt báo cáo riêng theo mã cổ phiếu.</p>
+        </div>
+        <div class="which-card">
+          <div class="which-tier-label">Hạng Vàng</div>
+          <div class="which-card-title">Phân tích sâu từng mã cổ phiếu theo tháng</div>
+          <p class="which-card-text">Chọn Hạng Vàng nếu bạn muốn truy cập toàn bộ báo cáo có sẵn và có nhu cầu order tối đa 5 báo cáo doanh nghiệp chuyên sâu theo mã mỗi tháng.</p>
+        </div>
+        <div class="which-card">
+          <div class="which-tier-label">Hạng Kim Cương</div>
+          <div class="which-card-title">Tư vấn 1:1 và đồng hành chiến lược cá nhân</div>
+          <p class="which-card-text">Chọn Hạng Kim Cương nếu bạn cần đồng hành trực tiếp cùng chuyên gia và tư vấn chiến lược cá nhân hóa phù hợp với danh mục và mục tiêu đầu tư của mình.</p>
+        </div>
+      </div>
+      <div class="which-summary">
+        <p>
+          <span>Bạc</span> để đọc thị trường. &nbsp;
+          <span>Vàng</span> để đào doanh nghiệp. &nbsp;
+          <span>Kim Cương</span> để có người đồng hành chiến lược.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── PROCESS ── -->
+  <section class="section section-alt" id="register">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="eyebrow">Quy trình</span>
+        <h2 class="section-title">Quy trình đăng ký hội viên</h2>
+        <p class="section-desc">Các gói từ Hạng Bạc trở lên sẽ được đội ngũ Cafe Capital hướng dẫn đăng ký qua Zalo và kích hoạt tài khoản theo từng hạng hội viên.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-num-wrap"><span class="step-num">01</span></div>
+          <div class="step-title">Chọn gói hội viên phù hợp</div>
+          <p class="step-text">Xem bảng quyền lợi giữa các gói để lựa chọn gói phù hợp với nhu cầu theo dõi thị trường và phân tích đầu tư.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num-wrap"><span class="step-num">02</span></div>
+          <div class="step-title">Nhấn link Zalo để được hướng dẫn</div>
+          <p class="step-text">Nhấn vào nút Zalo trên website để kết nối với đội ngũ Cafe Capital và được tư vấn gói hội viên phù hợp.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num-wrap"><span class="step-num">03</span></div>
+          <div class="step-title">Admin tạo tài khoản</div>
+          <p class="step-text">Sau khi hoàn tất đăng ký, admin Cafe Capital sẽ tạo tài khoản tương ứng với gói hội viên đã chọn.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num-wrap"><span class="step-num">04</span></div>
+          <div class="step-title">Đăng nhập và đổi mật khẩu</div>
+          <p class="step-text">Đăng nhập bằng tài khoản được cung cấp, vào phần thông tin cá nhân để đổi mật khẩu và bắt đầu sử dụng.</p>
+        </div>
+      </div>
+      <div class="process-cta">
+        <a href="https://zalo.me/cafecapital" target="_blank" rel="noopener" class="btn-primary">Liên hệ Zalo để đăng ký</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── NOTES ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Lưu ý quan trọng</span>
+        <h2 class="section-title">Lưu ý khi sử dụng tài khoản hội viên</h2>
+      </div>
+      <div class="notes-card">
+        <div class="notes-label">Important note</div>
+        <ul class="notes-list">
+          <li>Tài khoản hội viên Cafe Capital được cấp theo từng người dùng và không dùng chung với bên thứ ba.</li>
+          <li>Các nội dung báo cáo có tính chất tham khảo và hỗ trợ ra quyết định đầu tư, không phải cam kết hiệu quả.</li>
+          <li>Người dùng nên thường xuyên kiểm tra mục báo cáo, nhận định và thông báo mới để không bỏ lỡ cập nhật quan trọng.</li>
+          <li>Mọi thắc mắc về tài khoản, quyền lợi hoặc báo cáo vui lòng liên hệ trực tiếp với đội ngũ Cafe Capital qua Zalo.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="final-cta-section">
+    <div class="container">
+      <div class="final-cta-inner">
+        <div class="final-eyebrow">Cafe Capital — Private Investor Membership</div>
+        <h2 class="final-title">Sẵn sàng nâng cấp trải nghiệm đầu tư cùng Cafe Capital?</h2>
+        <p class="final-desc">Liên hệ đội ngũ Cafe Capital để được tư vấn gói hội viên phù hợp với nhu cầu theo dõi thị trường, phân tích doanh nghiệp và xây dựng chiến lược đầu tư của bạn.</p>
+        <div class="final-cta-btns">
+          <a href="https://zalo.me/cafecapital" target="_blank" rel="noopener" class="btn-primary">Liên hệ Zalo để đăng ký</a>
+          <a href="#" class="btn-secondary">Đăng nhập tài khoản hội viên</a>
+        </div>
+        <div class="final-tagline">Private access &nbsp;·&nbsp; Structured research &nbsp;·&nbsp; Strategic companionship</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Cafe Capital <span>Membership</span></div>
+      </div>
+      <p class="footer-note">Thông tin trên website nhằm mục đích cung cấp nội dung tham khảo, không phải cam kết hiệu quả đầu tư.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Show nav desktop zalo on >= 769px
+    (function() {
+      var btn = document.getElementById('nav-desktop-zalo');
+      function check() {
+        btn.style.display = window.innerWidth >= 769 ? 'inline-flex' : 'none';
+      }
+      check();
+      window.addEventListener('resize', check);
+    })();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        if (href === '#') return;
+        var target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          var offset = 68;
+          var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
